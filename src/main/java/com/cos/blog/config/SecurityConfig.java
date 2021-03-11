@@ -1,11 +1,19 @@
 package com.cos.blog.config;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration // 설정, 메모리에 띄움 ioc에 등록
 @EnableWebSecurity // 이제 커스터마이징한 시큐리티가 실행된다.
@@ -29,6 +37,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{ // 어댑터�
 			.formLogin() // x-www-form-urlencoded , json으로 던지면 안된다. 결국 폼태그를 만들어야한다.
 			.loginPage("/loginForm") // user, post 호출 시 로그인 페이지로 리다이렉션됨 
 		    .loginProcessingUrl("/login") // /login이 들어오면 시큐리티가 낚아챈다 get방식은 안됨 post방식만 낚아챔.
-		    .defaultSuccessUrl("/");
+//		    .successHandler(new AuthenticationSuccessHandler() { 성공 핸들러 defaultSuccessUrl 대체해서 사용됨.
+//				
+//				@Override
+//				public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+//						Authentication authentication) throws IOException, ServletException {
+//					response.sendRedirect("/");
+//					
+//				}
+//			})
+		    .defaultSuccessUrl("/"); //로그인하면 최초페이지 / 
 	}
 }

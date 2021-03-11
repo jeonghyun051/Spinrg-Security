@@ -27,6 +27,7 @@ public class PrincipalDetailsService implements UserDetailsService{
 			
 			return null;
 		}else {
+			//session.setAttribut("principal",principal); //내가만든 세션 로그아웃할때는 세션 무효화되서 두개있어도 된다.
 			return new PrincipalDetails(principal);
 		}
 		

@@ -26,8 +26,11 @@ public class PostController {
 	private final PostService postService;
 	
 	@GetMapping("/") //메인페이지
-	public String findAll(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC, size=3) Pageable pageable) { // id로 정렬, 내림차순, 5개씩,  Pageable 도메인꺼임
+	public String findAll(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC, size=3) Pageable pageable, @AuthenticationPrincipal PrincipalDetails principalDetails) { // id로 정렬, 내림차순, 5개씩,  Pageable 도메인꺼임
 	    
+		System.out.println("누구로 로그인 됐을까");
+		System.out.println(principalDetails.getUsername());
+		
 		Page<Post> posts = postService.전체찾기(pageable);
 			
 		model.addAttribute("posts",posts); // 모델을 제공해줘서 모델에 담으면 된다. 그러면 값을 담고 리스트 페이지로 간다.//모델에 JSP 에서 리퀘스트디스패쳐에 담고 forward한거랑 같다 

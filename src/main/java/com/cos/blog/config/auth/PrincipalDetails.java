@@ -2,21 +2,43 @@ package com.cos.blog.config.auth;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.cos.blog.domain.user.User;
 
 import lombok.Data;
 
 @Data
-public class PrincipalDetails implements UserDetails {
+public class PrincipalDetails implements UserDetails, OAuth2User {
 
 	private User user;
+	private Map<String, Object> attributes; // OAuth 제공자로 부터 받은 회원 정보, 모든 정보를 받기 위해 Map으로 만듬
+	private boolean oAuth;
 	
 	public PrincipalDetails(User user) {
 		this.user = user;
+	}
+	
+	public PrincipalDetails(User user, Map<String, Object> attributes) {
+		this.user = user;
+		this.attributes = attributes;
+		this.oAuth = true;
+	}
+	
+	@Override
+	public Map<String, Object> getAttributes() {
+		
+		return attributes;
+	}
+
+	@Override
+	public String getName() {
+		
+		return "ㅁㄹ";
 	}
 	
 	@Override
@@ -69,5 +91,4 @@ public class PrincipalDetails implements UserDetails {
 		
 		return collectors;
 	}
-
 }

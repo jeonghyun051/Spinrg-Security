@@ -17,7 +17,7 @@ public abstract class OAuth2UserInfo {
 	public abstract String getUsername();
 	public abstract String getId();
 	public abstract String getName();
-	public abstract String getEamil();
+	public abstract String getEmail();
 	public abstract String getImageUrl();
 	
 	//내가 정의를 내린 곳

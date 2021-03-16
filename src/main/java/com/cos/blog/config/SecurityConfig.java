@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // 어댑터�
 	    http.csrf().disable(); 
 		http.authorizeRequests()
 //			.antMatchers("/user","/post").authenticated() // authenticated 두개만 인증을 하겠다. /user/** 하위폴더 다 막기
-		    .antMatchers("/user/**", "/post/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')") // 둘중에 하나의 권한만 있으면 페이지 이동가능 // ROLE_ 강제성이있음 ROLE체크시
+		    .antMatchers("/user/**", "/post/**", "/reply/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')") // 둘중에 하나의 권한만 있으면 페이지 이동가능 // ROLE_ 강제성이있음 ROLE체크시
 		    .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')") // 인증, 권한 검사
 			.anyRequest().permitAll() // 나머지는 허용해주는 것, 열리는 것 
 			.and() // 여기서 끝

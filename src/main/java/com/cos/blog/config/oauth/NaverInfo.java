@@ -2,9 +2,9 @@ package com.cos.blog.config.oauth;
 
 import java.util.Map;
 
-public class FacebookInfo extends OAuth2UserInfo{
+public class NaverInfo extends OAuth2UserInfo{
 
-	public FacebookInfo(Map<String, Object> attributes) {
+	public NaverInfo(Map<String, Object> attributes) {
 		super(attributes);
 		
 	}
@@ -30,14 +30,12 @@ public class FacebookInfo extends OAuth2UserInfo{
 	@Override
 	public String getImageUrl() {
 		
-		return null;
+		return "";
 	}
 
 	@Override
 	public String getUsername() {
 		
-		return "Facebook_"+(String)attributes.get("id"); // sub는 중복될 수 있는데 여기 앞에 어디서 로그인했는지 적어놓으면 중복될수 없음 프라이머리키가 될수있다.
+		return "Naver_"+(String)attributes.get("id"); 
 	}
-	
-
 }

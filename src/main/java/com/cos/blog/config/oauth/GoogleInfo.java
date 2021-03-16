@@ -22,7 +22,7 @@ public class GoogleInfo extends OAuth2UserInfo{
 	}
 
 	@Override
-	public String getEamil() {
+	public String getEmail() {
 		
 		return (String)attributes.get("email");
 	}

@@ -1,5 +1,6 @@
 package com.cos.blog.config.oauth;
 
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -51,6 +52,10 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
 		} else if (userRequest.getClientRegistration().getClientName().equals("Facebook")) {
 			oAuth2UserInfo = new FacebookInfo(oauth2User.getAttributes());
+		}else if (userRequest.getClientRegistration().getClientName().equals("Naver")) {
+			oAuth2UserInfo = new NaverInfo((Map)(oauth2User.getAttributes().get("response")));
+		}else if(userRequest.getClientRegistration().getClientName().equals("Kakao")) {
+			oAuth2UserInfo = new KakaoInfo((Map)(oauth2User.getAttributes()));
 		}
 
 		// 2번 최초 : 회원가입 + 로그인 최초X : 로그인
@@ -58,12 +63,13 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
 		UUID uuid = UUID.randomUUID();
 		String encPassword = new BCryptPasswordEncoder().encode(uuid.toString());
-
+		System.out.println("유저 이메일" + oAuth2UserInfo.getEmail());
+		
 		if (userEntity == null) {
 			User user = User.builder()
 					.username(oAuth2UserInfo.getUsername())
 					.password(encPassword)
-					.email(oAuth2UserInfo.getEamil())
+					.email(oAuth2UserInfo.getEmail())
 					.role(RoleType.USER)
 					.build();
 			userEntity = userRepository.save(user);

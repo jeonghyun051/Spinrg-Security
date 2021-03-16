@@ -31,10 +31,10 @@ public class User {
 	@Column(nullable = false, length = 100, unique = true) // nullable = false 무조건 값이 있어야함
 	private String username;
 	
-	@Column(nullable = true, length = 100) // 123456 = 해쉬(비밀번호 암호화)
+	@Column(nullable = false, length = 100) // 123456 = 해쉬(비밀번호 암호화)
 	private String password;
 	
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 100)
 	private String email;
 	
 	@Enumerated(EnumType.STRING) // 기본이 INT 인데 varchar로 바뀜

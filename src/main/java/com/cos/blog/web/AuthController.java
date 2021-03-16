@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
-public class AurhController { // 인증을 위한 컨트롤러
+public class AuthController { // 인증을 위한 컨트롤러
 	
 	private final AuthService authService;
 

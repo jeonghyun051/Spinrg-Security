@@ -12,8 +12,6 @@
 			<button class="btn btn-primary m-1">검색</button>
 		</form>
 	</div>
-	
-	<div></div>
 
 	<c:forEach var="post" items="${posts.content}">
 		<div class="card">
@@ -23,7 +21,6 @@
 					<div>작성자:${post.user.username}</div>
 				</div>
 				<a href="/post/${post.id}" class="btn btn-primary">상세보기</a>
-
 			</div>
 		</div>
 		<br>
@@ -37,7 +34,7 @@
 
 			</c:when>
 			<c:otherwise>
-				<li class="page-item"><a class="page-link" href="?page=${posts.number-1}">Previous</a></li>
+				<li class="page-item"><a class="page-link" href="search?title=${title}&page=${posts.number-1}">Previous</a></li>
 			</c:otherwise>
 		</c:choose>
 
@@ -47,7 +44,7 @@
 
 			</c:when>
 			<c:otherwise>
-				<li class="page-item"><a class="page-link" href="?page=${posts.number+1}">Next</a></li>
+				<li class="page-item"><a class="page-link" href="search?title=${title}&page=${posts.number+1}">Next</a></li>
 			</c:otherwise>
 		</c:choose>
 

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cos.blog.domain.post.Post;
 import com.cos.blog.domain.post.PostRepository;
 import com.cos.blog.web.post.dto.PostSaveReqDto;
+import com.cos.blog.web.post.dto.PostSearchReqDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +17,14 @@ import lombok.RequiredArgsConstructor;
 public class PostService {
 
 	private final PostRepository postRepository;
+	
+	@Transactional(readOnly = true) // 변경감지를 안해서 쓸데없는 연산을 줄여준다.
+	public Page<Post> 검색하기(PostSearchReqDto postSearchReqDto, Pageable pageable){
+		
+		return postRepository.findByTitleContaining(postSearchReqDto.getTitle(),pageable);
+		//return postRepository.findByTitleContaining(postSearchReqDto.getTitle(),pageable);
+		
+	}
 	
 	@Transactional(readOnly = true) // 변경감지를 안해서 쓸데없는 연산을 줄여준다.
 	public Page<Post> 전체찾기(Pageable pageable){

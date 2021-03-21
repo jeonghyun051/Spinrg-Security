@@ -61,4 +61,10 @@ public class Post {
 	
 	@CreationTimestamp
 	private Timestamp createDate;
+	
+	/*
+	 * String createDate = df.format(((Post) posts).getCreateDate()) ;
+	 * System.out.println("시간3" + df.format(createDate));
+	 * model.addAttribute("createDate",createDate);
+	 */
 }

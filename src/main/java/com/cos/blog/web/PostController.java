@@ -37,8 +37,7 @@ public class PostController {
 	//게시물검색
 	@GetMapping("/post/search")
 	public String search(PostSearchReqDto postSearchReqDto ,Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC, size=3) Pageable pageable) {
-		System.out.println("검색값은 뭐냐"+postSearchReqDto.getTitle());
-		
+
 		Page<Post> posts = postService.검색하기(postSearchReqDto,pageable);
 		model.addAttribute("posts",posts);
 		model.addAttribute("title",postSearchReqDto.getTitle());
@@ -54,13 +53,6 @@ public class PostController {
 		System.out.println(principalDetails.getUsername());
 		
 		Page<Post> posts = postService.전체찾기(pageable);
-		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		/*
-		 * String createDate = df.format(((Post) posts).getCreateDate()) ;
-		 * System.out.println("시간3" + df.format(createDate));
-		 * model.addAttribute("createDate",createDate);
-		 */
 		
 		System.out.println("전체뽑은 리스트 "+posts);
 		model.addAttribute("posts",posts); // 모델을 제공해줘서 모델에 담으면 된다. 그러면 값을 담고 리스트 페이지로 간다.//모델에 JSP 에서 리퀘스트디스패쳐에 담고 forward한거랑 같다 
@@ -99,6 +91,7 @@ public class PostController {
 	public String detail(@PathVariable int id, Model model) {
 		
 		Post postEntity = postService.상세보기(id);
+		
 		model.addAttribute("post",postEntity);
 		
 		return "post/detail"; // ViewResolver가 작동해서 jsp파일을 찾아줌.

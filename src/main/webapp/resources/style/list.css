@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+body{
+background-color: #F5F5F5;	
+}
+
+.container{
+	max-width:500px !important;
+}
+
+.card{
+border-radius: 15px;
+    background-color: white;
+       border: 3px solid #E3E1E1;
+}
+
+.btn-primary{
+	    color: black;
+    border-radius: 5px;
+    background-color: wheat;
+    border-color: transparent;
+}

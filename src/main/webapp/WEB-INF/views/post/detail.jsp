@@ -27,6 +27,8 @@
 	<!-- 댓글 시작 -->
 	<div class="card">
 		<form>
+			<input type="hidden" id="userId" value="${principal.user.id}" /> 
+			<input type="hidden" id="postId" value="${post.id}" />
 			<div class="card-body">
 				<textarea id="reply-content" class="form-control" rows="1"></textarea>
 			</div>
@@ -57,11 +59,46 @@
 
 </div>
 
+<script>
+<!-- 댓글 쓰기 -->
+$("#btn-reply-save").on("click",() =>{
+	if ($("#reply-content").val() == ""){
+		alert("글을 입력해주세요");
+	}else{
 
-<script>	
+	console.log($("#reply-content").val());
+	
+	let data = {
+			content:$("#reply-content").val(),
+			userId:$("#userId").val(),
+			postId:$("#postId").val(),	
+	}
+	
+	$.ajax({
+		
+		method:"POST", 
+		url:"/reply", 
+		data:JSON.stringify(data), // data를 JSON화 시킴
+		contentType:"application/json;charset=utf-8", // JSON 데이터임을 알림
+		dataType:"json" // 요청 받는 것도 JSON으로 받겠다.
+	})
+	.done(res=>{
+		if(res.statusCode === 1){
+			location.reload();
+		}else{
+			alert("댓글 저장에 실패하셨습니다.")
+		}
+	});
+	}
+});
+</script>
+
+
+<script>
+	<!-- 게시물 삭제 -->
 	$("#btn-delete").on("click",(e)=>{
 		let id = e.currentTarget.value;
-		
+		console.log("id:" + id);
 		//delete요청할려고 ajax썼음 / 폼태그는 못함
 		$.ajax({
 			type:"DELETE",

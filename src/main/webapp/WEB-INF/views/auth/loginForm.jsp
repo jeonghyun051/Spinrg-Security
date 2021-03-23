@@ -20,7 +20,7 @@
 		<button class="btn">LOG IN</button>
 
 		<div class="bottomText">
-			Don't you have ID? <a href="#">sign up</a>
+			Don't you have ID? <a href="joinForm">sign up</a>
 		</div>
 		<div style="margin: 8px">
 			<a href="/oauth2/authorization/naver"><img src="http://localhost:8080/resources/images/login_naver.jpg"></a>

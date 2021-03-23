@@ -26,5 +26,11 @@ public class ReplyService {
 			return -1;
 		}
 	}
+	
+	@Transactional
+	public Reply 저장하기(Reply reply) {
+		System.out.println("서비스에서 리플라이" + reply);
+		return replyRepository.save(reply);
+	}
 }
 

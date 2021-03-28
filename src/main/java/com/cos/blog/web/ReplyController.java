@@ -29,7 +29,7 @@ public class ReplyController {
 		System.out.println("댓글아디랑 유저 들어왔나 "+id + principalDetails.getUser().getId());
 		int result = replyService.삭제하기(id, principalDetails.getUser().getId());
 
-		return new CMRespDto<>(result, null);
+		return new CMRespDto<>(result,"성공", null);
 
 	}
 	
@@ -38,9 +38,9 @@ public class ReplyController {
 		Reply replyEntity = replyService.저장하기(replySaveReqDto.toEntity());
 		System.out.println("replyEntity :" + replyEntity);
 		if(replyEntity != null){
-			return new CMRespDto<>(1, replyEntity);	
+			return new CMRespDto<>(1, "성공",replyEntity);	
 		}else {
-			return new CMRespDto<>(-1, null);	
+			return new CMRespDto<>(-1, "실패",null);	
 		}
 		
 	}

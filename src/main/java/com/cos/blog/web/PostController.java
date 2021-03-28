@@ -77,14 +77,14 @@ public class PostController {
 	@PutMapping("/post/{id}")
 	public @ResponseBody CMRespDto<?> updateById(@PathVariable int id,@RequestBody PostSaveReqDto postSaveReqDto){
 		postService.수정하기(id, postSaveReqDto);
-		return new CMRespDto<>(1,null);
+		return new CMRespDto<>(1,"성공",null);
 	}
 	
 	@DeleteMapping("/post/{id}")
 	public @ResponseBody CMRespDto<?> deleteById(@PathVariable int id){
 		
 		postService.삭제하기(id);
-		return new  CMRespDto<>(1,null);
+		return new  CMRespDto<>(1,"성공",null);
 	}
 	
 	@GetMapping("/post/{id}")

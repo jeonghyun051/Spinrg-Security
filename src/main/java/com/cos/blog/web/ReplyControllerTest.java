@@ -24,6 +24,6 @@ public class ReplyControllerTest {
 		postRepository.findAll();
 		
 		Post post = postRepository.findById(id).get();
-		return new CMRespDto<>(1,post);
+		return new CMRespDto<>(1,"성공",post);
 	}
 }

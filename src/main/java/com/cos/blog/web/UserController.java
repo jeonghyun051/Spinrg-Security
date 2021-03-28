@@ -43,7 +43,7 @@ public class UserController {
 //				new UsernamePasswordAuthenticationToken(userEntity.getUsername(), userEntity.getPassword());
 //		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
-		return new CMRespDto<>(1,null);		
+		return new CMRespDto<>(1,"성공",null);		
 		
 	}
 
